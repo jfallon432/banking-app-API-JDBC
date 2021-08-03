@@ -8,13 +8,20 @@ public class CheckingAccount extends Account{
 
     }
 
+    public CheckingAccount(int id, double balance, String nickName) {
+        super(id, balance, nickName);
+    }
 
-
+    public CheckingAccount(){
+        super();
+    }
 
     @Override
     public String getType(){
         return type;
     }
+
+
 
 
 }

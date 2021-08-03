@@ -30,11 +30,8 @@ public class AccountDAO {
                 System.out.println(account);
             }
 
-            String makeUserRelation ="insert into user_accounts(user_id, account_id) values(?,?)";
-            PreparedStatement pstmt2 = conn.prepareStatement(makeUserRelation);
-            pstmt2.setInt(1, id);
-            pstmt2.setInt(2,account.getId());
-            pstmt2.executeUpdate();
+            makeUserRelation(id, account.getId(), conn);
+
 
             if(account.getType() == "checking"){
                 String makeAccountRelation = "insert into checking_accounts(account_id, balance) values(?,?)";
@@ -57,6 +54,14 @@ public class AccountDAO {
             throwables.printStackTrace();
         }
 
+    }
+
+    public void makeUserRelation(int userId, int accountId, Connection conn) throws SQLException {
+        String makeUserRelation ="insert into user_accounts(user_id, account_id) values(?,?)";
+        PreparedStatement pstmt2 = conn.prepareStatement(makeUserRelation);
+        pstmt2.setInt(1, userId);
+        pstmt2.setInt(2,accountId);
+        pstmt2.executeUpdate();
     }
 
 }

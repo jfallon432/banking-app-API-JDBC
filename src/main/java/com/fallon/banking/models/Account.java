@@ -1,5 +1,8 @@
 package com.fallon.banking.models;
 
+import java.util.Map;
+import java.util.Set;
+
 public abstract class Account {
     private int id;
     private double balance;
@@ -8,6 +11,15 @@ public abstract class Account {
     public Account(double balance, String nickName) {
         this.balance = balance;
         this.nickName = nickName;
+    }
+
+    public Account(int id, double balance, String nickName) {
+        this.id = id;
+        this.balance = balance;
+        this.nickName = nickName;
+    }
+
+    public Account() {
     }
 
     public int getId() {
@@ -35,6 +47,7 @@ public abstract class Account {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
+
 
     @Override
     public String toString() {

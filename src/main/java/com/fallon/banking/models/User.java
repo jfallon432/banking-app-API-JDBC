@@ -1,6 +1,9 @@
 package com.fallon.banking.models;
 
+import com.fallon.banking.web.dtos.RegisterAccountDTO;
+
 import java.time.LocalDate;
+import java.util.Map;
 
 public class User {
     private int id;
@@ -10,6 +13,7 @@ public class User {
     private String firstName;
     private String lastName;
     private LocalDate dob;
+    private Map accounts;
 
     public User(String username, String password, String email, String firstName, String lastName, LocalDate dob) {
         this.username = username;
@@ -20,7 +24,26 @@ public class User {
         this.dob = dob;
     }
 
+    public User(int id, String username, String password, String email, String firstName, String lastName, LocalDate dob) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+    }
+
     public User() {
+    }
+
+    public User(RegisterAccountDTO registerAccountDTO){
+        this.email = registerAccountDTO.getEmail();
+        this.username = registerAccountDTO.getUsername();
+        this.password =registerAccountDTO.getPassword();
+        this.firstName = registerAccountDTO.getFirstName();
+        this.lastName = registerAccountDTO.getLastName();
+        this.dob = registerAccountDTO.getDob();
     }
 
     public int getId() {
@@ -79,6 +102,14 @@ public class User {
         this.dob = dob;
     }
 
+    public Map getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Map accounts) {
+        this.accounts = accounts;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -89,6 +120,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dob=" + dob +
+                ", accounts=" + accounts +
                 '}';
     }
 }
